@@ -1,0 +1,9 @@
+{
+  "name": "level_2-assignment-3_cow-hat",
+  "version": "1.0.0",
+  "description": "cow hat assignment-3",
+  "main": "src/server.tss",
+  "repository": "https://github.com/Programming-Hero-Web-Course4/l2a3-cow-hut-backend-assignment-NahidAhmed07.git",
+  "author": "Nahid Ahmed",
+  "license": "MIT"
+}
