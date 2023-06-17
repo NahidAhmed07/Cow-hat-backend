@@ -7,7 +7,11 @@
   "author": "Nahid Ahmed",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "start": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "lint:fix": "eslint --ignore-path .eslintignore --ext .js,.ts . --fix",
+    "prettier:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prettier:check": "prettier --ignore-path .gitignore --check \"**/*.+(js|ts|json)\""
   },
   "devDependencies": {
     "ts-node-dev": "^2.0.0",
@@ -16,9 +20,14 @@
   "dependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
     "cors": "^2.8.5",
     "dotenv": "^16.3.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
     "express": "^4.18.2",
-    "mongoose": "^7.3.0"
+    "mongoose": "^7.3.0",
+    "prettier": "^2.8.8"
   }
 }
