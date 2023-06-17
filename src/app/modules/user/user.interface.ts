@@ -1,7 +1,6 @@
 import { Model } from 'mongoose';
 
 type IUser = {
-  id: number;
   phoneNumber: string;
   role: 'seller' | 'buyer';
   password: string;
