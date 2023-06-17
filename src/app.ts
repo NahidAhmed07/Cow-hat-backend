@@ -1,5 +1,6 @@
-import express, { Application } from "express";
-import cors from "cors";
+import express, { Application } from 'express';
+import cors from 'cors';
+import httpStatus from 'http-status';
 
 const app: Application = express();
 
@@ -12,8 +13,25 @@ app.use(express.json());
 // using express.urlencoded() to parse urlencoded data from the request body
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/api/v1", (req, res) => {
-  res.send("Hello World");
+app.get('/api/v1', (req, res) => {
+  res.send('Hello World');
+});
+
+// this is not found middleware which will be executed when a request is made to a route which is not defined
+app.use((req, res, next) => {
+  res.status(httpStatus.NOT_FOUND).json({
+    message: 'Not Found',
+    statusCode: httpStatus.NOT_FOUND,
+    success: false,
+    errorMessages: [
+      {
+        message: 'Not Found',
+        path: req.originalUrl,
+      },
+    ],
+  });
+
+  next();
 });
 
 export default app;
