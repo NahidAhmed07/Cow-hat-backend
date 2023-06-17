@@ -5,13 +5,29 @@ import { ErrorRequestHandler } from 'express';
 import ApiError from '../../errors/ApiError';
 import { IGenericErrorMessage } from '../../interface/error';
 import { config } from '../../config';
+import { ZodError } from 'zod';
+import handleZodValidationError from '../../errors/handleZodValidationError';
+import handleMongooseValidationError from '../../errors/handleMongooseValidationError';
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode: number = httpStatus.INTERNAL_SERVER_ERROR;
   let message = 'Something went wrong';
   let errorMessages: IGenericErrorMessage[] = [];
 
-  if (error instanceof ApiError) {
+  if (error?.name === 'ValidationError') {
+    const simplifiedError = handleMongooseValidationError(error);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorMessages = simplifiedError.errorMessages;
+  }
+
+  // handle zod validation error
+  else if (error instanceof ZodError) {
+    const simplifiedError = handleZodValidationError(error);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorMessages = simplifiedError.errorMessages;
+  } else if (error instanceof ApiError) {
     statusCode = error?.statusCode;
     message = error?.message;
     errorMessages = error?.message
