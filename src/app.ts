@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import httpStatus from 'http-status';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
+import UserRouter from './app/modules/user/user.route';
 
 const app: Application = express();
 
@@ -14,9 +15,8 @@ app.use(express.json());
 // using express.urlencoded() to parse urlencoded data from the request body
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/api/v1', (req, res) => {
-  res.send('Hello World');
-});
+// using the user router
+app.use('/api/v1/user', UserRouter);
 
 // using globalErrorHandler middleware to handle all the errors
 app.use(globalErrorHandler);
