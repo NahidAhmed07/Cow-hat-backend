@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import httpStatus from 'http-status';
+import globalErrorHandler from './app/middleware/globalErrorHandler';
 
 const app: Application = express();
 
@@ -16,6 +17,9 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/api/v1', (req, res) => {
   res.send('Hello World');
 });
+
+// using globalErrorHandler middleware to handle all the errors
+app.use(globalErrorHandler);
 
 // this is not found middleware which will be executed when a request is made to a route which is not defined
 app.use((req, res, next) => {
