@@ -4,7 +4,7 @@ export type IPaginationQuery = {
   page?: string;
   limit?: string;
   sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: mongoose.SortOrder;
 };
 
 export type IPaginationOptions = {

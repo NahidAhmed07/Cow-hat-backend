@@ -13,6 +13,15 @@ type IUser = {
   income: number;
 };
 
+type IUserFilterOptions = {
+  searchTerm?: string;
+  role?: 'seller' | 'buyer';
+  minBudget?: number;
+  maxBudget?: number;
+  minIncome?: number;
+  maxIncome?: number;
+};
+
 type IUserModel = Model<IUser, Record<string, unknown>>;
 
-export { IUser, IUserModel };
+export { IUser, IUserModel, IUserFilterOptions };

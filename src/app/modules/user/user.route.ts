@@ -11,8 +11,7 @@ UserRouter.post(
   UserController.createUser
 );
 
-UserRouter.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+UserRouter.patch('/:id', UserController.updateUser);
+UserRouter.get('/', UserController.getAllUser);
 
 export default UserRouter;
