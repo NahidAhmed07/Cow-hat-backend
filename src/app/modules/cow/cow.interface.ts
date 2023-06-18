@@ -1,15 +1,17 @@
 import { Model, Types } from 'mongoose';
+import { IUser } from '../user/user.interface';
 
 type ICowLocation =
   | 'Dhaka'
   | 'Chattogram'
-  | 'Rajshahi'
-  | 'Khulna'
   | 'Barishal'
+  | 'Rajshahi'
   | 'Sylhet'
+  | 'Khulna'
   | 'Rangpur'
-  | 'Mymensingh';
-type ICowCategory = 'Dairy' | 'Beef' | 'Dual-purpose';
+  | 'Mymensingh'
+  | 'Comilla';
+type ICowCategory = 'Dairy' | 'Beef' | 'DualPurpose';
 
 type ICow = {
   name: string;
@@ -21,7 +23,7 @@ type ICow = {
   label: 'for sale' | 'sold out';
   category: ICowCategory;
   image?: string;
-  seller: Types.ObjectId;
+  seller: Types.ObjectId | IUser;
 };
 
 type ICowFilterOptions = {
