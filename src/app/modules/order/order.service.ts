@@ -132,7 +132,9 @@ const createOrder = async (payload: IOrder) => {
 
   return createdOrder;
 };
+// end create order
 
+// get all orders start here //
 const getOrders = async (
   paginationOptions: IPaginationOptions,
   filterOptions: { buyer?: string }
@@ -140,6 +142,7 @@ const getOrders = async (
   const { buyer } = filterOptions;
   const { page, limit, skip, sort } = paginationOptions;
 
+  // if buyer is provided then query with buyer otherwise query with empty object //
   const query = buyer ? { buyer } : {};
 
   const orders = await Order.find(query)
@@ -167,7 +170,9 @@ const getOrders = async (
     },
   };
 };
+// end get all orders
 
+// get single order start here //
 const getSingleOrder = async (id: string) => {
   const result = Order.findOne({ _id: id })
     .populate({
@@ -182,6 +187,7 @@ const getSingleOrder = async (id: string) => {
 
   return result;
 };
+// end get single order
 
 export const orderService = {
   createOrder,

@@ -7,6 +7,7 @@ import pick from '../../../shared/pick';
 import { paginationFields } from '../../../constants/pagination';
 import { userFilterOptions } from './user.constant';
 
+// create user controller
 const createUser = catchAsync(async (req, res) => {
   const bodyData = req.body;
 
@@ -19,11 +20,14 @@ const createUser = catchAsync(async (req, res) => {
     data: result,
   });
 });
+// end of create user controller
 
+// get all user controller
 const getAllUser = catchAsync(async (req, res) => {
   const paginationOptions = preparePaginationOptions(
     pick(req.query, paginationFields)
   );
+  // filter options for user  role and location
   const filterOptions = pick(req.query, userFilterOptions);
 
   const result = await UserService.getAllUser(filterOptions, paginationOptions);
@@ -36,7 +40,9 @@ const getAllUser = catchAsync(async (req, res) => {
     data: result.data,
   });
 });
+// end of get all user controller
 
+// update user controller
 const updateUser = catchAsync(async (req, res) => {
   const updatedData = req.body;
   const id = req.params.id;
@@ -50,7 +56,9 @@ const updateUser = catchAsync(async (req, res) => {
     data: result,
   });
 });
+// end of update user controller
 
+// get single user controller
 const getSingleUser = catchAsync(async (req, res) => {
   const id = req.params.id;
   const result = await UserService.getSingleUser(id);
@@ -62,7 +70,9 @@ const getSingleUser = catchAsync(async (req, res) => {
     data: result,
   });
 });
+// end of get single user controller
 
+// delete user controller
 const deleteUser = catchAsync(async (req, res) => {
   const id = req.params.id;
   const result = await UserService.deleteUser(id);
@@ -74,6 +84,7 @@ const deleteUser = catchAsync(async (req, res) => {
     data: result,
   });
 });
+// end of delete user controller
 
 export const UserController = {
   createUser,

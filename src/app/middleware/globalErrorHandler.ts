@@ -14,6 +14,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let message = 'Something went wrong';
   let errorMessages: IGenericErrorMessage[] = [];
 
+  // handle mongoose validation error
   if (error?.name === 'ValidationError') {
     const simplifiedError = handleMongooseValidationError(error);
     statusCode = simplifiedError.statusCode;

@@ -7,6 +7,7 @@ const _cowLocation = [
   'Sylhet',
   'Rangpur',
   'Mymensingh',
+  'Cumilla',
 ];
 
 const _cowCategory = ['Dairy', 'Beef', 'Dual-purpose'];

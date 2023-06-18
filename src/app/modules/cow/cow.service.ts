@@ -9,6 +9,7 @@ const createCow = async (payload: ICow) => {
   return result;
 };
 
+// get all cow service with pagination and filter options and populate seller
 const getAllCow = async (
   filterOptions: ICowFilterOptions,
   paginationOptions: IPaginationOptions
@@ -25,6 +26,7 @@ const getAllCow = async (
 
   const andCondition = [];
 
+  // search by name, location, category, label, breed
   if (searchTerm) {
     andCondition.push({
       $or: cowSearchableFields.map(field => ({
@@ -36,6 +38,7 @@ const getAllCow = async (
     });
   }
 
+  // filter by location, category, label, breed
   if (Object.keys(filterFields).length) {
     andCondition.push(
       ...Object.entries(filterFields).map(([field, value]) => ({
@@ -44,6 +47,7 @@ const getAllCow = async (
     );
   }
 
+  // filter by price, weight
   if (maxPrice) {
     andCondition.push({
       price: {
@@ -95,7 +99,9 @@ const getAllCow = async (
     },
   };
 };
+// end of get all cow service
 
+// update cow service
 const updateCow = async (id: string, payload: Partial<ICow>) => {
   const result = await CowModel.findOneAndUpdate({ _id: id }, payload, {
     new: true,
@@ -103,18 +109,23 @@ const updateCow = async (id: string, payload: Partial<ICow>) => {
 
   return result;
 };
+// end of update cow service
 
+// get single cow service
 const getSingleCow = async (id: string) => {
   const result = await CowModel.findById(id).populate('seller');
   return result;
 };
+// end of get single cow service
 
+// delete cow service
 const deleteCow = async (id: string) => {
   const result = await CowModel.findOneAndDelete({ _id: id }).populate(
     'seller'
   );
   return result;
 };
+// end of delete cow service
 
 export const CowService = {
   createCow,

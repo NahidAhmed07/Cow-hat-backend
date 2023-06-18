@@ -6,7 +6,6 @@ import app from './app';
 let server: Server;
 
 // step 5: handle uncaught exceptions and shutdown the server gracefully
-
 process.on('uncaughtException', err => {
   console.log(err);
   console.log('Shutting down the server due to Uncaught Exception');

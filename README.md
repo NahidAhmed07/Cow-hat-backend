@@ -10,6 +10,8 @@ This is a REST API for a cow hat shop. It has user creation, pagination, filteri
 
 ### Application Routes:
 
+#### Base_URL: https://mna-cow-hat.vercel.app/
+
 #### User
 
 - api/v1/user/create-user (POST)

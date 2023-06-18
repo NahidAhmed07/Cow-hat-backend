@@ -6,6 +6,7 @@ import pick from '../../../shared/pick';
 import { paginationFields } from '../../../constants/pagination';
 import { orderService } from './order.service';
 
+// create order controller
 const createOrder = catchAsync(async (req, res) => {
   const bodyData = req.body;
 
@@ -18,7 +19,9 @@ const createOrder = catchAsync(async (req, res) => {
     success: true,
   });
 });
+// end of create order controller
 
+// get orders controller with pagination and filter
 const getOrders = catchAsync(async (req, res) => {
   const paginationOptions = preparePaginationOptions(
     pick(req.query, paginationFields)
@@ -35,7 +38,9 @@ const getOrders = catchAsync(async (req, res) => {
     meta: orders.meta,
   });
 });
+// end of get orders controller with pagination and filter
 
+// get single order controller
 const getSingleOrder = catchAsync(async (req, res) => {
   const orderId = req.params.id;
 
@@ -48,6 +53,7 @@ const getSingleOrder = catchAsync(async (req, res) => {
     success: true,
   });
 });
+// end of get single order controller
 
 export const orderController = {
   createOrder,
