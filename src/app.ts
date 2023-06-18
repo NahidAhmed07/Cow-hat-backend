@@ -3,6 +3,7 @@ import cors from 'cors';
 import httpStatus from 'http-status';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import UserRouter from './app/modules/user/user.route';
+import CowRouter from './app/modules/cow/cow.route';
 
 const app: Application = express();
 
@@ -17,6 +18,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // using the user router
 app.use('/api/v1/user', UserRouter);
+
+// using the cow router
+app.use('/api/v1/cow', CowRouter);
 
 // using globalErrorHandler middleware to handle all the errors
 app.use(globalErrorHandler);
