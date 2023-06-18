@@ -35,6 +35,29 @@ const createUserZodSchema = z.object({
   }),
 });
 
+const updateUserZodSchema = z.object({
+  body: z.object({
+    phoneNumber: z.string().optional(),
+    role: z.enum(['seller', 'buyer']).optional(),
+    password: z
+      .string()
+      .min(6, {
+        message: 'Password Should be at least 6 characters long',
+      })
+      .optional(),
+    name: z
+      .object({
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+      })
+      .optional(),
+    address: z.string().optional(),
+    budget: z.number().optional(),
+    income: z.number().optional(),
+  }),
+});
+
 export const UserValidator = {
   createUserZodSchema,
+  updateUserZodSchema,
 };

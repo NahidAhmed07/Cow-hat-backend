@@ -11,7 +11,11 @@ UserRouter.post(
   UserController.createUser
 );
 
-UserRouter.patch('/:id', UserController.updateUser);
+UserRouter.patch(
+  '/:id',
+  validateRequest(UserValidator.updateUserZodSchema),
+  UserController.updateUser
+);
 UserRouter.get('/', UserController.getAllUser);
 
 export default UserRouter;
