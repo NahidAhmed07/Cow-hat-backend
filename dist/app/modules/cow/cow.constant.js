@@ -10,6 +10,7 @@ const _cowLocation = [
     'Sylhet',
     'Rangpur',
     'Mymensingh',
+    'Cumilla',
 ];
 exports._cowLocation = _cowLocation;
 const _cowCategory = ['Dairy', 'Beef', 'Dual-purpose'];

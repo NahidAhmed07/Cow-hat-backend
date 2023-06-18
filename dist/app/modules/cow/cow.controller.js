@@ -21,6 +21,7 @@ const pick_1 = __importDefault(require("../../../shared/pick"));
 const preparePaginationOptions_1 = __importDefault(require("../../helper/preparePaginationOptions"));
 const pagination_1 = require("../../../constants/pagination");
 const cow_constant_1 = require("./cow.constant");
+// create cow controller
 const createCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bodyData = req.body;
     const result = yield cow_service_1.CowService.createCow(bodyData);
@@ -31,6 +32,8 @@ const createCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         data: result,
     });
 }));
+// end of create cow controller
+// get all cow controller
 const getAllCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const paginationOptions = (0, preparePaginationOptions_1.default)((0, pick_1.default)(req.query, pagination_1.paginationFields));
     const filterOptions = (0, pick_1.default)(req.query, cow_constant_1.cowFilterFields);
@@ -43,6 +46,8 @@ const getAllCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         data: result.data,
     });
 }));
+// end of get all cow controller
+// update cow controller
 const updateCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedData = req.body;
     const id = req.params.id;
@@ -54,6 +59,8 @@ const updateCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         data: result,
     });
 }));
+// end of update cow controller
+// get single cow controller
 const getSingleCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield cow_service_1.CowService.getSingleCow(id);
@@ -64,6 +71,8 @@ const getSingleCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result,
     });
 }));
+// end of get single cow controller
+// delete cow controller
 const deleteCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield cow_service_1.CowService.deleteCow(id);
@@ -74,6 +83,7 @@ const deleteCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         data: result,
     });
 }));
+// end `of delete cow controller
 exports.CowController = {
     createCow,
     getAllCow,

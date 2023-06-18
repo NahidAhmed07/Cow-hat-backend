@@ -15,6 +15,7 @@ const globalErrorHandler = (error, req, res, next) => {
     let statusCode = http_status_1.default.INTERNAL_SERVER_ERROR;
     let message = 'Something went wrong';
     let errorMessages = [];
+    // handle mongoose validation error
     if ((error === null || error === void 0 ? void 0 : error.name) === 'ValidationError') {
         const simplifiedError = (0, handleMongooseValidationError_1.default)(error);
         statusCode = simplifiedError.statusCode;

@@ -27,6 +27,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const user_constant_1 = require("./user.constant");
 const user_model_1 = __importDefault(require("./user.model"));
+// create user service start
 const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield user_model_1.default.create(payload);
     return result;
@@ -35,6 +36,7 @@ const getAllUser = (filterOptions, paginationOptions) => __awaiter(void 0, void 
     const { page, limit, skip, sort } = paginationOptions;
     const { searchTerm } = filterOptions, filterFields = __rest(filterOptions, ["searchTerm"]);
     const andCondition = [];
+    // push search term in and condition if search term is provided
     if (searchTerm) {
         andCondition.push({
             $or: user_constant_1.userSearchableFields.map(field => ({
@@ -45,11 +47,13 @@ const getAllUser = (filterOptions, paginationOptions) => __awaiter(void 0, void 
             })),
         });
     }
+    // push filter fields in and condition if filter fields are provided //
     if (Object.keys(filterFields).length) {
         andCondition.push(...Object.entries(filterFields).map(([field, value]) => ({
             [field]: value,
         })));
     }
+    // if and condition is not empty then create where condition otherwise empty object //
     const whereCondition = andCondition.length ? { $and: andCondition } : {};
     const result = yield user_model_1.default.find(whereCondition)
         .skip(skip)
@@ -66,26 +70,39 @@ const getAllUser = (filterOptions, paginationOptions) => __awaiter(void 0, void 
         },
     };
 });
+// create user service end
+// update user service start
 const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name } = payload, userData = __rest(payload, ["name"]);
+    /**
+     * if name is provided then update name fields separately
+     * because name is an object in user model
+     * and we don't want to override the whole name object
+     */
     if (name && Object.keys(name).length) {
         Object.entries(name).forEach(([field, value]) => {
             userData[`name.${field}`] = value;
         });
     }
+    // update user data
     const result = yield user_model_1.default.findOneAndUpdate({ _id: id }, userData, {
         new: true,
     });
     return result;
 });
+// update user service end
+// get single user service start
 const getSingleUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield user_model_1.default.findById(id);
     return result;
 });
+// get single user service end
+// delete user service start
 const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield user_model_1.default.findOneAndDelete({ _id: id });
     return result;
 });
+// delete user service end
 exports.UserService = {
     createUser,
     getAllUser,

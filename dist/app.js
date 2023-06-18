@@ -9,6 +9,7 @@ const http_status_1 = __importDefault(require("http-status"));
 const globalErrorHandler_1 = __importDefault(require("./app/middleware/globalErrorHandler"));
 const user_route_1 = __importDefault(require("./app/modules/user/user.route"));
 const cow_route_1 = __importDefault(require("./app/modules/cow/cow.route"));
+const order_route_1 = __importDefault(require("./app/modules/order/order.route"));
 const app = (0, express_1.default)();
 // using cors to allow cross origin resource sharing
 app.use((0, cors_1.default)());
@@ -20,6 +21,8 @@ app.use(express_1.default.urlencoded({ extended: false }));
 app.use('/api/v1/user', user_route_1.default);
 // using the cow router
 app.use('/api/v1/cow', cow_route_1.default);
+// using the order router
+app.use('/api/v1/order', order_route_1.default);
 // using globalErrorHandler middleware to handle all the errors
 app.use(globalErrorHandler_1.default);
 // this is not found middleware which will be executed when a request is made to a route which is not defined

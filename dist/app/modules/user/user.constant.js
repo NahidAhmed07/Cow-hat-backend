@@ -6,11 +6,4 @@ exports.userSearchableFields = [
     'address',
     'name.lastName',
 ];
-exports.userFilterOptions = [
-    'searchTerm',
-    'role',
-    'minBudget',
-    'maxBudget',
-    'minIncome',
-    'maxIncome',
-];
+exports.userFilterOptions = ['searchTerm', 'role'];

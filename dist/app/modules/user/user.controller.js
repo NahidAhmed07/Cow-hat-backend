@@ -21,6 +21,7 @@ const preparePaginationOptions_1 = __importDefault(require("../../helper/prepare
 const pick_1 = __importDefault(require("../../../shared/pick"));
 const pagination_1 = require("../../../constants/pagination");
 const user_constant_1 = require("./user.constant");
+// create user controller
 const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bodyData = req.body;
     const result = yield user_service_1.UserService.createUser(bodyData);
@@ -31,8 +32,11 @@ const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result,
     });
 }));
+// end of create user controller
+// get all user controller
 const getAllUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const paginationOptions = (0, preparePaginationOptions_1.default)((0, pick_1.default)(req.query, pagination_1.paginationFields));
+    // filter options for user  role and location
     const filterOptions = (0, pick_1.default)(req.query, user_constant_1.userFilterOptions);
     const result = yield user_service_1.UserService.getAllUser(filterOptions, paginationOptions);
     (0, sendResponse_1.default)(res, {
@@ -43,6 +47,8 @@ const getAllUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result.data,
     });
 }));
+// end of get all user controller
+// update user controller
 const updateUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedData = req.body;
     const id = req.params.id;
@@ -54,6 +60,8 @@ const updateUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result,
     });
 }));
+// end of update user controller
+// get single user controller
 const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield user_service_1.UserService.getSingleUser(id);
@@ -64,6 +72,8 @@ const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
         data: result,
     });
 }));
+// end of get single user controller
+// delete user controller
 const deleteUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield user_service_1.UserService.deleteUser(id);
@@ -74,6 +84,7 @@ const deleteUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result,
     });
 }));
+// end of delete user controller
 exports.UserController = {
     createUser,
     getAllUser,

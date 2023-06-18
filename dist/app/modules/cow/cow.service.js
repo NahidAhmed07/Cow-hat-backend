@@ -30,10 +30,12 @@ const createCow = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield cow_model_1.default.create(payload);
     return result;
 });
+// get all cow service with pagination and filter options and populate seller
 const getAllCow = (filterOptions, paginationOptions) => __awaiter(void 0, void 0, void 0, function* () {
     const { page, limit, skip, sort } = paginationOptions;
     const { searchTerm, maxPrice, minPrice, maxWeight, minWeight } = filterOptions, filterFields = __rest(filterOptions, ["searchTerm", "maxPrice", "minPrice", "maxWeight", "minWeight"]);
     const andCondition = [];
+    // search by name, location, category, label, breed
     if (searchTerm) {
         andCondition.push({
             $or: cow_constant_1.cowSearchableFields.map(field => ({
@@ -44,11 +46,13 @@ const getAllCow = (filterOptions, paginationOptions) => __awaiter(void 0, void 0
             })),
         });
     }
+    // filter by location, category, label, breed
     if (Object.keys(filterFields).length) {
         andCondition.push(...Object.entries(filterFields).map(([field, value]) => ({
             [field]: value,
         })));
     }
+    // filter by price, weight
     if (maxPrice) {
         andCondition.push({
             price: {
@@ -94,20 +98,27 @@ const getAllCow = (filterOptions, paginationOptions) => __awaiter(void 0, void 0
         },
     };
 });
+// end of get all cow service
+// update cow service
 const updateCow = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield cow_model_1.default.findOneAndUpdate({ _id: id }, payload, {
         new: true,
     }).populate('seller');
     return result;
 });
+// end of update cow service
+// get single cow service
 const getSingleCow = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield cow_model_1.default.findById(id).populate('seller');
     return result;
 });
+// end of get single cow service
+// delete cow service
 const deleteCow = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield cow_model_1.default.findOneAndDelete({ _id: id }).populate('seller');
     return result;
 });
+// end of delete cow service
 exports.CowService = {
     createCow,
     getAllCow,
