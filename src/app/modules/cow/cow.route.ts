@@ -16,6 +16,6 @@ CowRouter.post(
 //   validateRequest(UserValidator.updateUserZodSchema),
 //   UserController.updateUser
 // );
-// CowRouter.get('/', UserController.getAllUser);
+CowRouter.get('/', CowController.getAllCow);
 
 export default CowRouter;

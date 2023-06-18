@@ -16,6 +16,9 @@ UserRouter.patch(
   validateRequest(UserValidator.updateUserZodSchema),
   UserController.updateUser
 );
+
+UserRouter.get('/:id', UserController.getSingleUser);
+UserRouter.delete('/:id', UserController.deleteUser);
 UserRouter.get('/', UserController.getAllUser);
 
 export default UserRouter;

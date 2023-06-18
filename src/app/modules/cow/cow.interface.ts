@@ -24,6 +24,19 @@ type ICow = {
   seller: Types.ObjectId;
 };
 
+type ICowFilterOptions = {
+  searchTerm?: string;
+  location?: string;
+  category?: string;
+  label?: string;
+  breed?: string;
+  age?: number;
+  maxPrice?: number;
+  minPrice?: number;
+  minWeight?: number;
+  maxWeight?: number;
+};
+
 type ICowModel = Model<ICow, Record<string, unknown>>;
 
-export { ICow, ICowModel, ICowLocation, ICowCategory };
+export { ICow, ICowModel, ICowLocation, ICowCategory, ICowFilterOptions };
