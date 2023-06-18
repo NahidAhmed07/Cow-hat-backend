@@ -31,7 +31,8 @@ This is a REST API for a cow hat shop. It has user creation, pagination, filteri
 
   ```
 
-- api/v1/users (GET)
+- api/v1/user (GET)
+  - Query Params: `?role=seller` or `?role=buyer` or `searchTerm=Na` or `?sortBy=income&sortOrder=asc` or `?pag=1&limit=10`
 - api/v1/users/6177a5b87d32123f08d2f5d4 (Single GET) Include an id that is saved in your database
 - api/v1/users/6177a5b87d32123f08d2f5d4 (PATCH)
 - api/v1/users/6177a5b87d32123f08d2f5d4 (DELETE) Include an id that is saved in your database

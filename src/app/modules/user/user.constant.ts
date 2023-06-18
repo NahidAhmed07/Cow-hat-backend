@@ -4,11 +4,4 @@ export const userSearchableFields = [
   'name.lastName',
 ];
 
-export const userFilterOptions = [
-  'searchTerm',
-  'role',
-  'minBudget',
-  'maxBudget',
-  'minIncome',
-  'maxIncome',
-];
+export const userFilterOptions = ['searchTerm', 'role'];
