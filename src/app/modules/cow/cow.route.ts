@@ -7,15 +7,18 @@ const CowRouter = Router();
 
 CowRouter.post(
   '/create-cow',
-  validateRequest(CowValidator.createCowValidation),
+  validateRequest(CowValidator.createCowZosSchema),
   CowController.createCow
 );
 
-// CowRouter.patch(
-//   '/:id',
-//   validateRequest(UserValidator.updateUserZodSchema),
-//   UserController.updateUser
-// );
+CowRouter.patch(
+  '/:id',
+  validateRequest(CowValidator.updateCowZodSchema),
+  CowController.updateCow
+);
+
+CowRouter.get('/:id', CowController.getSingleCow);
+CowRouter.delete('/:id', CowController.deleteCow);
 CowRouter.get('/', CowController.getAllCow);
 
 export default CowRouter;

@@ -96,7 +96,30 @@ const getAllCow = async (
   };
 };
 
+const updateCow = async (id: string, payload: Partial<ICow>) => {
+  const result = await CowModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  }).populate('seller');
+
+  return result;
+};
+
+const getSingleCow = async (id: string) => {
+  const result = await CowModel.findById(id).populate('seller');
+  return result;
+};
+
+const deleteCow = async (id: string) => {
+  const result = await CowModel.findOneAndDelete({ _id: id }).populate(
+    'seller'
+  );
+  return result;
+};
+
 export const CowService = {
   createCow,
   getAllCow,
+  getSingleCow,
+  deleteCow,
+  updateCow,
 };

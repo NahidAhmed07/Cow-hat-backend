@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { _cowCategory, _cowLabel, _cowLocation } from './cow.constant';
 
-const createCowValidation = z.object({
+const createCowZosSchema = z.object({
   body: z.object({
     name: z.string({
       required_error: 'Name is required',
@@ -31,7 +31,7 @@ const createCowValidation = z.object({
   }),
 });
 
-const updateCowValidation = z.object({
+const updateCowZodSchema = z.object({
   body: z.object({
     name: z.string().optional(),
     age: z.number().optional(),
@@ -46,6 +46,6 @@ const updateCowValidation = z.object({
 });
 
 export const CowValidator = {
-  createCowValidation,
-  updateCowValidation,
+  createCowZosSchema,
+  updateCowZodSchema,
 };

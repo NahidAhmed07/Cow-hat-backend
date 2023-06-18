@@ -36,7 +36,48 @@ const getAllCow = catchAsync(async (req, res) => {
   });
 });
 
+const updateCow = catchAsync(async (req, res) => {
+  const updatedData = req.body;
+  const id = req.params.id;
+
+  const result = await CowService.updateCow(id, updatedData);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Cow updated successfully',
+    data: result,
+  });
+});
+
+const getSingleCow = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await CowService.getSingleCow(id);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Cow fetched successfully',
+    data: result,
+  });
+});
+
+const deleteCow = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await CowService.deleteCow(id);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Cow Deleted successfully',
+    data: result,
+  });
+});
+
 export const CowController = {
   createCow,
   getAllCow,
+  updateCow,
+  getSingleCow,
+  deleteCow,
 };
