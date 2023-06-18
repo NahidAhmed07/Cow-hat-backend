@@ -41,6 +41,8 @@ const CowSchema = new Schema<ICow, ICowModel>({
   image: {
     type: String,
     required: false,
+    default:
+      'https://artprojectsforkids.org/wp-content/uploads/2021/01/Cow.jpeg',
   },
   seller: {
     type: Schema.Types.ObjectId,
