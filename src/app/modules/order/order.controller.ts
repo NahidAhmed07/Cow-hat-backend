@@ -19,40 +19,38 @@ const createOrder = catchAsync(async (req, res) => {
   });
 });
 
-// const getOrders = catchAsync(async (req, res) => {
+const getOrders = catchAsync(async (req, res) => {
+  const paginationOptions = preparePaginationOptions(
+    pick(req.query, paginationFields)
+  );
+  const filterOption = pick(req.query, ['buyer']);
 
-//     const paginationOptions = preparePaginationOptions(pick(req.query, paginationFields));
-//     const filterOption = pick(req.query, ["buyer"]);
+  const orders = await orderService.getOrders(paginationOptions, filterOption);
 
-//     const orders = await orderService.getOrders(paginationOptions, filterOption);
+  sendResponse(res, {
+    data: orders.data,
+    message: 'Orders fetched successfully',
+    statusCode: httpStatus.OK,
+    success: true,
+    meta: orders.meta,
+  });
+});
 
-//     sendResponse(res,{
-//         data: orders.data,
-//         message: "Orders fetched successfully",
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         meta: orders.meta
-//     })
+const getSingleOrder = catchAsync(async (req, res) => {
+  const orderId = req.params.id;
 
-// })
+  const order = await orderService.getSingleOrder(orderId);
 
-// const getSingleOrder = catchAsync(async (req, res) => {
-
-//     const orderId = req.params.id;
-
-//     const order = await orderService.getSingleOrder(orderId);
-
-//     sendResponse(res,{
-//         data: order,
-//         message: "Order fetched successfully",
-//         statusCode: httpStatus.OK,
-//         success: true
-//     })
-
-// })
+  sendResponse(res, {
+    data: order,
+    message: 'Order fetched successfully',
+    statusCode: httpStatus.OK,
+    success: true,
+  });
+});
 
 export const orderController = {
   createOrder,
-  //   getOrders,
-  //   getSingleOrder,
+  getOrders,
+  getSingleOrder,
 };
